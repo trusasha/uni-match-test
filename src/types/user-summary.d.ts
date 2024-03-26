@@ -16,4 +16,5 @@ interface UserProfile {
   userTags: string[];
   company: UserCompany;
   matching: number;
+  savedCount: string;
 }

@@ -17,12 +17,13 @@ const MOCK_USER: UserProfile = {
   userTags: [UserTag.web3, UserTag.blockchain],
   company: { name: 'Fund Future', location: 'Inc, US', logo: 'https://via.placeholder.com/150/372c93' },
   matching: 84,
+  savedCount: '7k',
 };
 
 export const CardInner = () => {
   return (
     <View style={styles.container}>
-      <Header matching={MOCK_USER.matching} />
+      <Header matching={MOCK_USER.matching} savedCount={MOCK_USER.savedCount} />
       <Content userProfile={MOCK_USER} />
     </View>
   );
