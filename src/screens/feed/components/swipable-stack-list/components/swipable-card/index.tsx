@@ -1,6 +1,5 @@
-import { Canvas, LinearGradient, Rect, useComputedValue, vec } from '@shopify/react-native-skia';
 import type { FC } from 'react';
-import React, { memo } from 'react';
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { GestureDetector } from 'react-native-gesture-handler';
 import type { SharedValue } from 'react-native-reanimated';
