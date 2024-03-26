@@ -23,7 +23,7 @@ export const Tag: FC<Props> = ({ tag, additionalStyles }) => {
     return (
       <View style={[styles.row, additionalStyles]}>
         {tag.map(item => (
-          <Tag tag={item} additionalStyles={styles.rowItem} />
+          <Tag tag={item} key={item} additionalStyles={styles.rowItem} />
         ))}
       </View>
     );
@@ -67,7 +67,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 16,
     color: COLORS.neutralLight,
-    textTransform: 'uppercase',
   },
   row: {
     flexDirection: 'row',

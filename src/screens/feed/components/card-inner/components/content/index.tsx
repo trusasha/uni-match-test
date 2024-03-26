@@ -5,6 +5,7 @@ import { UserTag } from 'components/tag';
 import { Summary } from './components/summary';
 import { Information } from './components/information';
 import { Company } from './components/company';
+import { AsideButtons } from './components/aside-buttons';
 
 const MOCK_USER: UserProfile = {
   summary: [
@@ -26,14 +27,15 @@ export const Content = () => {
     <View>
       <Summary summary={summary} additionalStyles={styles.mb14} />
       <View style={styles.row}>
-        <View>
+        <View style={styles.leftContent}>
           <Information
             generalInformation={generalInformation}
             tags={userTags as UserTag[]}
-            additionalStyles={styles.mb20}
+            additionalStyles={styles.information}
           />
           <Company companyLocation={company.location} companyName={company.name} logo={company.logo} />
         </View>
+        <AsideButtons />
       </View>
     </View>
   );
@@ -43,12 +45,17 @@ const styles = StyleSheet.create({
   mb14: {
     marginBottom: 14,
   },
-  mb20: {
+  information: {
+    marginRight: 20,
     marginBottom: 20,
+  },
+  leftContent: {
+    flexShrink: 1,
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'flex-end',
     paddingHorizontal: 12,
     paddingBottom: 12,
   },

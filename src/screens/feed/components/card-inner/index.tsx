@@ -21,6 +21,5 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'space-between',
     backgroundColor: '#EC612B',
-    borderWidth: 1,
   },
 });
