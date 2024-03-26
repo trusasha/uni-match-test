@@ -4,6 +4,7 @@ import { UserTag } from 'components/tag';
 
 import { Summary } from './components/summary';
 import { Information } from './components/information';
+import { Company } from './components/company';
 
 const MOCK_USER: UserProfile = {
   summary: [
@@ -15,18 +16,23 @@ const MOCK_USER: UserProfile = {
   generalInformation:
     'Fund Future’s venture capital and emerging companies team brings a high level of experience to lorem lorem lorem lorem lorem lorem lorem lorem',
   userTags: [UserTag.web3, UserTag.blockchain],
+  company: { name: 'Fund Future', location: 'Inc, US', logo: 'https://via.placeholder.com/150/372c93' },
 };
 
 export const Content = () => {
+  const { summary, generalInformation, userTags, company } = MOCK_USER;
+
   return (
     <View>
-      <Summary summary={MOCK_USER.summary} additionalStyles={styles.mb14} />
+      <Summary summary={summary} additionalStyles={styles.mb14} />
       <View style={styles.row}>
         <View>
           <Information
-            generalInformation={MOCK_USER.generalInformation}
-            tags={MOCK_USER.userTags as UserTag[]}
+            generalInformation={generalInformation}
+            tags={userTags as UserTag[]}
+            additionalStyles={styles.mb20}
           />
+          <Company companyLocation={company.location} companyName={company.name} logo={company.logo} />
         </View>
       </View>
     </View>
@@ -36,6 +42,9 @@ export const Content = () => {
 const styles = StyleSheet.create({
   mb14: {
     marginBottom: 14,
+  },
+  mb20: {
+    marginBottom: 20,
   },
   row: {
     flexDirection: 'row',

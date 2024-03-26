@@ -4,17 +4,19 @@ import type { UserTag } from 'components/tag';
 import { Tag } from 'components/tag';
 import type { FC } from 'react';
 import React from 'react';
+import type { ViewProps } from 'react-native';
 import { StyleSheet, Text, View } from 'react-native';
 import { LinkButton } from 'components/link-button';
 
 interface Props {
   generalInformation: string;
   tags: UserTag[];
+  additionalStyles?: ViewProps['style'];
 }
 
-export const Information: FC<Props> = ({ generalInformation, tags }) => {
+export const Information: FC<Props> = ({ generalInformation, tags, additionalStyles }) => {
   return (
-    <View>
+    <View style={additionalStyles}>
       <Text style={styles.text} numberOfLines={3}>
         {generalInformation}
       </Text>
