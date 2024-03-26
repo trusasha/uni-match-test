@@ -5,5 +5,7 @@ interface UserSummary {
 }
 
 interface UserProfile {
+  generalInformation: string;
   summary: UserSummary[];
+  userTags: string[];
 }

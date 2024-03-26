@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     justifyContent: 'space-between',
-    backgroundColor: COLORS.neutral,
+    backgroundColor: '#7D7F7F',
+    borderWidth: 1,
   },
 });
