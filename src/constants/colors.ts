@@ -6,4 +6,6 @@ export const COLORS = {
   neutralLight: '#D4D4D4',
   neutralGray: '#888888',
   blue: '#4672C7',
+  blueLight: '#619ED7',
+  white: '#fff',
 };

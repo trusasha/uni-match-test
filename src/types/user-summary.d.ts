@@ -15,4 +15,5 @@ interface UserProfile {
   summary: UserSummary[];
   userTags: string[];
   company: UserCompany;
+  matching: number;
 }
