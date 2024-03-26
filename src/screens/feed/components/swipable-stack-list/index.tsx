@@ -1,7 +1,9 @@
 import type { FC } from 'react';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeIn, FadeOut, useSharedValue } from 'react-native-reanimated';
+
+import { CardInner } from '../card-inner';
 
 import { SwipeableCard } from './components/swipable-card';
 
@@ -17,14 +19,15 @@ export const SwipableStackList: FC<Props> = ({ colors }) => {
       key={item}
       index={index}
       activeIndex={activeIndex}
-      color={item}
       onSwipeRight={() => {
         console.log('LIKE: ');
       }}
       onSwipeLeft={() => {
         console.log('DISLIKE: ');
       }}
-    />
+    >
+      <CardInner />
+    </SwipeableCard>
   );
 
   return (

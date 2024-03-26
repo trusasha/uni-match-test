@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { FC, PropsWithChildren } from 'react';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { GestureDetector } from 'react-native-gesture-handler';
@@ -8,14 +8,19 @@ import Animated from 'react-native-reanimated';
 import { useSwipeCardAnimation } from './hooks/use-swipe-card-animation';
 
 type Props = {
-  color: string;
   index: number;
   activeIndex: SharedValue<number>;
   onSwipeRight: () => void;
   onSwipeLeft: () => void;
 };
 
-const SwipeableCard: FC<Props> = ({ color, index, activeIndex, onSwipeLeft, onSwipeRight }) => {
+const SwipeableCard: FC<PropsWithChildren<Props>> = ({
+  index,
+  activeIndex,
+  onSwipeLeft,
+  onSwipeRight,
+  children,
+}) => {
   const { gesture, animatedCardContainerStyle, animatedCardStyle } = useSwipeCardAnimation({
     index,
     activeIndex,
@@ -26,9 +31,7 @@ const SwipeableCard: FC<Props> = ({ color, index, activeIndex, onSwipeLeft, onSw
   return (
     <GestureDetector gesture={gesture}>
       <Animated.View style={[styles.container, { zIndex: -index }, animatedCardContainerStyle]}>
-        <Animated.View style={[styles.content, animatedCardStyle]}>
-          <View style={[styles.card, { backgroundColor: color }]} />
-        </Animated.View>
+        <Animated.View style={[styles.content, animatedCardStyle]}>{children}</Animated.View>
       </Animated.View>
     </GestureDetector>
   );
@@ -45,10 +48,6 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     overflow: 'hidden',
     flex: 1,
-  },
-  card: {
-    width: '100%',
-    height: '100%',
   },
 });
 
