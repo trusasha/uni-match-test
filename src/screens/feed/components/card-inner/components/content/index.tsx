@@ -6,14 +6,21 @@ import { Summary } from './components/summary';
 import { Information } from './components/information';
 import { Company } from './components/company';
 import { AsideButtons } from './components/aside-buttons';
+import { LinearGradient } from 'expo-linear-gradient';
+import Animated, { SlideInDown, SlideOutDown } from 'react-native-reanimated';
 
 interface Props {
   userProfile: UserProfile;
+  isPlaying: boolean;
 }
 
-export const Content: FC<Props> = ({userProfile: { summary, generalInformation, userTags, company }}) => {
+export const Content: FC<Props> = ({userProfile: { summary, generalInformation, userTags, company }, isPlaying}) => {
+  if (isPlaying) {
+    return null
+  }
+
   return (
-    <View>
+    <Animated.View entering={SlideInDown.duration(800)} exiting={SlideOutDown.duration(800)} key="content">
       <Summary summary={summary} additionalStyles={styles.mb14} />
       <View style={styles.row}>
         <View style={styles.leftContent}>
@@ -26,7 +33,12 @@ export const Content: FC<Props> = ({userProfile: { summary, generalInformation, 
         </View>
         <AsideButtons />
       </View>
-    </View>
+      <LinearGradient
+        colors={['transparent', 'rgba(0,0,0,0.5)', 'rgba(0,0,0,0.8)']}
+        locations={[0, 0.4, 1]}
+        style={styles.gradient}
+      />
+    </Animated.View>
   );
 };
 
@@ -47,5 +59,10 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     paddingHorizontal: 12,
     paddingBottom: 12,
+  },
+  gradient: {
+    ...StyleSheet.absoluteFillObject,
+    marginTop: -50,
+    zIndex: -1,
   },
 });

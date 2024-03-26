@@ -2,7 +2,7 @@ import { COLORS } from 'constants/colors';
 
 import type { FC } from 'react';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import HeartIcon from 'assets/screens/feed/card-inner/heart.svg';
 
 interface Props {
@@ -12,9 +12,9 @@ interface Props {
 export const SavedIndicator: FC<Props> = ({ savedCount }) => (
   <View style={styles.container}>
     <HeartIcon style={styles.icon} width={24} height={24} />
-    <View style={styles.savedContainer}>
+    <TouchableOpacity activeOpacity={0.7} style={styles.savedContainer}>
       <Text style={styles.savedText}>{savedCount} saved it</Text>
-    </View>
+    </TouchableOpacity>
   </View>
 );
 

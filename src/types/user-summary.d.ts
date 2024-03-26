@@ -17,4 +17,5 @@ interface UserProfile {
   company: UserCompany;
   matching: number;
   savedCount: string;
+  videoUrl: string;
 }
