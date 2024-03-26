@@ -1,10 +1,12 @@
-import { useCallback, useMemo } from 'react';
-import { Dimensions, useWindowDimensions } from 'react-native';
+import { COLORS } from 'constants/colors';
+
+import { Dimensions } from 'react-native';
 import { Gesture } from 'react-native-gesture-handler';
 import type { SharedValue } from 'react-native-reanimated';
 import {
   Extrapolation,
   interpolate,
+  interpolateColor,
   runOnJS,
   useAnimatedStyle,
   useDerivedValue,
@@ -78,7 +80,7 @@ export const useSwipeCardAnimation = ({ index, activeIndex, onSwipeLeft, onSwipe
       }
     });
 
-  const animatedCardStyle = useAnimatedStyle(() => {
+  const animatedCardContainerStyle = useAnimatedStyle(() => {
     const opacity = withTiming(index - activeIndex.value < 5 ? 1 : 0);
     const transY = withTiming((index - activeIndex.value) * 23);
     const scale = withTiming(1 - 0.07 * (index - activeIndex.value));
@@ -99,5 +101,14 @@ export const useSwipeCardAnimation = ({ index, activeIndex, onSwipeLeft, onSwipe
     };
   });
 
-  return { gesture, animatedCardStyle };
+  const animatedCardStyle = useAnimatedStyle(() => ({
+    borderWidth: interpolate(translateX.value, [-100, 0, 100], [4, 0, 4]),
+    borderColor: interpolateColor(
+      translateX.value,
+      [-100, 0, 100],
+      [COLORS.lightRed, 'rgba(0,0,0,0)', COLORS.primary],
+    ),
+  }));
+
+  return { gesture, animatedCardContainerStyle, animatedCardStyle };
 };

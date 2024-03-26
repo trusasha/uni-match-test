@@ -15,8 +15,8 @@ type Props = {
   onSwipeLeft: () => void;
 };
 
-const SwipeableCard: FC<Props> = ({ color, index, activeIndex, onSwipeLeft, onSwipeRight }, ref) => {
-  const { gesture, animatedCardStyle } = useSwipeCardAnimation({
+const SwipeableCard: FC<Props> = ({ color, index, activeIndex, onSwipeLeft, onSwipeRight }) => {
+  const { gesture, animatedCardContainerStyle, animatedCardStyle } = useSwipeCardAnimation({
     index,
     activeIndex,
     onSwipeLeft,
@@ -25,10 +25,10 @@ const SwipeableCard: FC<Props> = ({ color, index, activeIndex, onSwipeLeft, onSw
 
   return (
     <GestureDetector gesture={gesture}>
-      <Animated.View style={[styles.container, { zIndex: -index }, animatedCardStyle]}>
-        <View style={styles.content}>
+      <Animated.View style={[styles.container, { zIndex: -index }, animatedCardContainerStyle]}>
+        <Animated.View style={[styles.content, animatedCardStyle]}>
           <View style={[styles.card, { backgroundColor: color }]} />
-        </View>
+        </Animated.View>
       </Animated.View>
     </GestureDetector>
   );
@@ -39,11 +39,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     height: '75%',
     width: '90%',
+    borderRadius: 20,
   },
   content: {
-    flex: 1,
     borderRadius: 15,
     overflow: 'hidden',
+    flex: 1,
   },
   card: {
     width: '100%',
