@@ -19,6 +19,7 @@ interface Props {
 export const Header: FC<Props> = ({ isPlaying, matching, savedCount, id }) => {
   const animatedStyles = useAnimatedStyle(() => ({
     transform: [{ translateY: withTiming(isPlaying.value ? -200 : 0, { duration: 800 }) }],
+    opacity: withTiming(isPlaying.value ? 0 : 1, { duration: 600 }),
   }));
 
   return (

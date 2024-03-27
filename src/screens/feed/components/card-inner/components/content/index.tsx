@@ -16,7 +16,8 @@ interface Props {
 
 export const Content: FC<Props> = ({userProfile: { summary, generalInformation, userTags, company, id }, isPlaying}) => {
   const animatedStyles = useAnimatedStyle(() => ({
-    transform: [{translateY: withTiming(isPlaying.value ? 350 : 0, {duration: 800})}]
+    transform: [{translateY: withTiming(isPlaying.value ? 350 : 0, {duration: 800})}],
+    opacity: withTiming(isPlaying.value ? 0 : 1, {duration: 600})
   }))
 
   return (
