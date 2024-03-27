@@ -13,9 +13,10 @@ interface Props {
   isPlaying: SharedValue<boolean>;
   matching: number;
   savedCount: string;
+  id: string;
 }
 
-export const Header: FC<Props> = ({ isPlaying, matching, savedCount }) => {
+export const Header: FC<Props> = ({ isPlaying, matching, savedCount, id }) => {
   const animatedStyles = useAnimatedStyle(() => ({
     transform: [{ translateY: withTiming(isPlaying.value ? -200 : 0, { duration: 800 }) }],
   }));
@@ -23,7 +24,7 @@ export const Header: FC<Props> = ({ isPlaying, matching, savedCount }) => {
   return (
     <Animated.View style={[styles.container, animatedStyles]}>
       <MatchingCircle value={matching} label="matching" />
-      <SavedIndicator savedCount={savedCount} />
+      <SavedIndicator savedCount={savedCount} id={id} />
       <LinearGradient
         colors={['rgba(0,0,0,0.5)', 'transparent']}
         locations={[0.3, 1]}

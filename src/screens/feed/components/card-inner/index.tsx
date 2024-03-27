@@ -33,6 +33,7 @@ export const CardInner: FC<Props> = ({ userProfile }) => {
     <View style={styles.container}>
       <Header
         isPlaying={isPlaying}
+        id={userProfile.id}
         matching={userProfile.matching}
         savedCount={userProfile.savedCount}
       />

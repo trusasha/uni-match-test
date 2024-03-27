@@ -4,19 +4,29 @@ import type { FC } from 'react';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import HeartIcon from 'assets/screens/feed/card-inner/heart.svg';
+import { NavigationHelpers, useNavigation } from '@react-navigation/native';
+import { ScreenParams } from 'navigation/constants/types';
+import { SCREENS } from 'navigation/constants/screens';
 
 interface Props {
+  id: string;
   savedCount: string;
 }
 
-export const SavedIndicator: FC<Props> = ({ savedCount }) => (
-  <View style={styles.container}>
-    <HeartIcon style={styles.icon} width={24} height={24} />
-    <TouchableOpacity activeOpacity={0.7} style={styles.savedContainer}>
-      <Text style={styles.savedText}>{savedCount} saved it</Text>
-    </TouchableOpacity>
-  </View>
-);
+export const SavedIndicator: FC<Props> = ({ id, savedCount }) => {
+  const {navigate} = useNavigation<NavigationHelpers<ScreenParams>>()
+
+  const onSaved = () => navigate(SCREENS.WHO_SAVED, {id})
+
+  return (
+    <View style={styles.container}>
+      <HeartIcon style={styles.icon} width={24} height={24} />
+      <TouchableOpacity onPress={onSaved} activeOpacity={0.7} style={styles.savedContainer}>
+        <Text style={styles.savedText}>{savedCount} saved it</Text>
+      </TouchableOpacity>
+    </View>
+  )
+};
 
 const styles = StyleSheet.create({
   container: {

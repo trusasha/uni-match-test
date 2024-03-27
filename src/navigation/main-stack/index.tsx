@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Feed } from 'screens/feed';
 import { Details } from 'screens/details';
 import { SCREENS } from 'navigation/constants/screens';
+import { WhoSaved } from 'screens/who-saved';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,5 +22,6 @@ export const MainStack = () => (
   <Stack.Navigator initialRouteName={SCREENS.FEED} screenOptions={options}>
     <Stack.Screen name={SCREENS.FEED} component={Feed} />
     <Stack.Screen name={SCREENS.DETAILS} component={Details} options={modalOptions} />
+    <Stack.Screen name={SCREENS.WHO_SAVED} component={WhoSaved} options={modalOptions} />
   </Stack.Navigator>
 );
