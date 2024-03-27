@@ -15,7 +15,7 @@ interface Props {
 export const PlayerButton: FC<Props> = ({ isPlaying, onToggle }) => {
   const animatedStyles = useAnimatedStyle(
     () => ({
-      top: withTiming(isPlaying.value ? 330 : 0, { duration: 800 }),
+      top: withTiming(isPlaying.value ? 320 : 0, { duration: 800 }),
     }),
     [],
   );
