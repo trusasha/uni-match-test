@@ -7,20 +7,20 @@ import { Information } from './components/information';
 import { Company } from './components/company';
 import { AsideButtons } from './components/aside-buttons';
 import { LinearGradient } from 'expo-linear-gradient';
-import Animated, { SlideInDown, SlideOutDown } from 'react-native-reanimated';
+import Animated, { SharedValue, SlideInDown, SlideOutDown, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 
 interface Props {
   userProfile: UserProfile;
-  isPlaying: boolean;
+  isPlaying: SharedValue<boolean>;
 }
 
 export const Content: FC<Props> = ({userProfile: { summary, generalInformation, userTags, company }, isPlaying}) => {
-  if (isPlaying) {
-    return null
-  }
+  const animatedStyles = useAnimatedStyle(() => ({
+    transform: [{translateY: withTiming(isPlaying.value ? 350 : 0, {duration: 800})}]
+  }))
 
   return (
-    <Animated.View entering={SlideInDown.duration(800)} exiting={SlideOutDown.duration(800)} key="content">
+    <Animated.View entering={SlideInDown.duration(800)} exiting={SlideOutDown.duration(800)} style={animatedStyles} key="content">
       <Summary summary={summary} additionalStyles={styles.mb14} />
       <View style={styles.row}>
         <View style={styles.leftContent}>

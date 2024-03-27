@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { UserTag } from 'components/tag';
 import { useSharedValue } from 'react-native-reanimated';
@@ -26,24 +26,23 @@ const MOCK_USER: UserProfile = {
 };
 
 export const CardInner = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const isPlaying = useSharedValue(false);
 
   const backgroundVideoRef = useRef<BackgroundVideoMethods>(null);
 
-  const onToggle = () =>
-    setIsPlaying(state => {
-      if (state) {
-        backgroundVideoRef.current?.pause();
-      } else {
-        backgroundVideoRef.current?.play();
-      }
+  const onToggle = () => {
+    if (isPlaying.value) {
+      backgroundVideoRef.current?.pause();
+    } else {
+      backgroundVideoRef.current?.play();
+    }
 
-      return !state;
-    });
+    isPlaying.value = !isPlaying.value;
+  };
 
   return (
     <View style={styles.container}>
-      <Header matching={MOCK_USER.matching} savedCount={MOCK_USER.savedCount} />
+      <Header isPlaying={isPlaying} matching={MOCK_USER.matching} savedCount={MOCK_USER.savedCount} />
       <PlayerButton isPlaying={isPlaying} onToggle={onToggle} />
       <Content isPlaying={isPlaying} userProfile={MOCK_USER} />
       <BackgroundVideo ref={backgroundVideoRef} videoUrl={MOCK_USER.videoUrl} />
