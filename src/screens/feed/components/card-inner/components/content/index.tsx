@@ -14,7 +14,7 @@ interface Props {
   isPlaying: SharedValue<boolean>;
 }
 
-export const Content: FC<Props> = ({userProfile: { summary, generalInformation, userTags, company }, isPlaying}) => {
+export const Content: FC<Props> = ({userProfile: { summary, generalInformation, userTags, company, id }, isPlaying}) => {
   const animatedStyles = useAnimatedStyle(() => ({
     transform: [{translateY: withTiming(isPlaying.value ? 350 : 0, {duration: 800})}]
   }))
@@ -25,6 +25,7 @@ export const Content: FC<Props> = ({userProfile: { summary, generalInformation, 
       <View style={styles.row}>
         <View style={styles.leftContent}>
           <Information
+            id={id}
             generalInformation={generalInformation}
             tags={userTags as UserTag[]}
             additionalStyles={styles.information}

@@ -10,6 +10,7 @@ import { BackgroundVideo } from './components/background-video';
 import { PlayerButton } from './components/player-button';
 
 const MOCK_USER: UserProfile = {
+  id: '1',
   summary: [
     { label: 'Ready to invest', value: '$300 k', id: '0' },
     { label: 'Exits', value: '17', id: '1' },

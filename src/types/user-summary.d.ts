@@ -11,6 +11,7 @@ interface UserCompany {
 }
 
 interface UserProfile {
+  id: string;
   generalInformation: string;
   summary: UserSummary[];
   userTags: string[];
