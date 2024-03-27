@@ -6,6 +6,8 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import HeartIcon from 'assets/screens/feed/card-inner/heart.svg';
 import { RouteParams } from 'navigation/constants/types';
+import { CompanyAvatar } from 'components/company-avatar';
+import Animated, { FadeIn } from 'react-native-reanimated';
 
 const MOCK_COMPANIES: UserProfile['company'][] = [
   { name: 'Splinterlands', location: 'L', logo: 'https://via.placeholder.com/600/56acb2' },
@@ -37,8 +39,12 @@ export const WhoSaved = () => {
     }
   }, [])
 
-  const renderCompany = (item: UserCompany) => {
-    return <View key={item.logo} />
+  const renderCompany = (item: UserCompany, index: number) => {
+    return (
+      <Animated.View entering={FadeIn.delay(100 * index)} key={item.logo}>
+        <CompanyAvatar name={item.name} imageUrl={item.logo}  additionalStyles={styles.companyItem} />
+      </Animated.View>
+    )
   }
 
   return (
@@ -48,7 +54,7 @@ export const WhoSaved = () => {
           <HeartIcon style={styles.mr12} width={24} height={24} />
           <Text style={styles.text}>Who saved it (69)</Text>
         </View>
-        <ScrollView>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.scroll} contentContainerStyle={styles.scrollContainer}>
           {companies?.map(renderCompany)}
         </ScrollView>
       </TopSheet>
@@ -75,5 +81,15 @@ const styles = StyleSheet.create({
   sheet: {
     backgroundColor: COLORS.black,
     borderBottomRightRadius: 0,
+    height: 300,
+  },
+  companyItem: {
+    marginHorizontal: 4,
+  },
+  scroll: {
+    marginHorizontal: -16,
+  },
+  scrollContainer: {
+    paddingHorizontal: 16,
   },
 });
