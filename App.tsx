@@ -1,4 +1,5 @@
 import { NavigationContainer } from '@react-navigation/native';
+import { StatusBar } from 'expo-status-bar';
 import { MainStack } from 'navigation/main-stack';
 import React from 'react';
 import { StyleSheet } from 'react-native';
@@ -11,6 +12,7 @@ function App(): React.JSX.Element {
       <SafeAreaProvider>
         <GestureHandlerRootView style={styles.flex}>
           <MainStack />
+          <StatusBar style="light" />
         </GestureHandlerRootView>
       </SafeAreaProvider>
     </NavigationContainer>
