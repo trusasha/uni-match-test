@@ -15,6 +15,7 @@ interface UserProfile {
   generalInformation: string;
   summary: UserSummary[];
   userTags: string[];
+  goals: string[];
   company: UserCompany;
   matching: number;
   savedCount: string;

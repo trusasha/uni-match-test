@@ -4,10 +4,10 @@ import { UserTag } from 'components/tag';
 
 import { Summary } from './components/summary';
 import { Information } from './components/information';
-import { Company } from './components/company';
 import { AsideButtons } from './components/aside-buttons';
 import { LinearGradient } from 'expo-linear-gradient';
-import Animated, { SharedValue, SlideInDown, SlideOutDown, useAnimatedStyle, withTiming } from 'react-native-reanimated';
+import Animated, { SharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
+import { CompanyBlock } from 'components/company-block';
 
 interface Props {
   userProfile: UserProfile;
@@ -20,7 +20,7 @@ export const Content: FC<Props> = ({userProfile: { summary, generalInformation, 
   }))
 
   return (
-    <Animated.View entering={SlideInDown.duration(800)} exiting={SlideOutDown.duration(800)} style={animatedStyles} key="content">
+    <Animated.View style={animatedStyles} key="content">
       <Summary summary={summary} additionalStyles={styles.mb14} />
       <View style={styles.row}>
         <View style={styles.leftContent}>
@@ -30,7 +30,7 @@ export const Content: FC<Props> = ({userProfile: { summary, generalInformation, 
             tags={userTags as UserTag[]}
             additionalStyles={styles.information}
           />
-          <Company companyLocation={company.location} companyName={company.name} logo={company.logo} />
+          <CompanyBlock companyLocation={company.location} companyName={company.name} logo={company.logo} />
         </View>
         <AsideButtons />
       </View>

@@ -8,4 +8,5 @@ export const COLORS = {
   blue: '#4672C7',
   blueLight: '#619ED7',
   white: '#fff',
+  black: 'rgba(18, 18, 18, 1)',
 };

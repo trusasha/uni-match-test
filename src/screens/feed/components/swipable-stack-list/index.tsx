@@ -8,15 +8,15 @@ import { CardInner } from '../card-inner';
 import { SwipeableCard } from './components/swipable-card';
 
 interface Props {
-  colors: string[];
+  userProfiles: UserProfile[];
 }
 
-export const SwipableStackList: FC<Props> = ({ colors }) => {
+export const SwipableStackList: FC<Props> = ({ userProfiles }) => {
   const activeIndex = useSharedValue(0);
 
-  const renderCard = (item: string, index: number) => (
+  const renderCard = (item: UserProfile, index: number) => (
     <SwipeableCard
-      key={item}
+      key={item.id}
       index={index}
       activeIndex={activeIndex}
       onSwipeRight={() => {
@@ -26,14 +26,14 @@ export const SwipableStackList: FC<Props> = ({ colors }) => {
         console.log('DISLIKE: ');
       }}
     >
-      <CardInner />
+      <CardInner userProfile={item} />
     </SwipeableCard>
   );
 
   return (
     <View style={styles.flex}>
       <Animated.View style={styles.content} entering={FadeIn.delay(300)} exiting={FadeOut}>
-        {colors.map(renderCard)}
+        {userProfiles.map(renderCard)}
       </Animated.View>
     </View>
   );

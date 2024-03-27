@@ -1,13 +1,13 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
-import { SwipableStackList } from './components/swipable-stack-list';
+import { USER_PROFILES } from 'mock/user-profiles';
 
-const COLORS = ['red', 'blue', 'green', 'yellow', 'pink'];
+import { SwipableStackList } from './components/swipable-stack-list';
 
 export const Feed = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <SwipableStackList colors={COLORS}/>
+      <SwipableStackList userProfiles={USER_PROFILES} />
     </SafeAreaView>
   );
 };

@@ -2,17 +2,19 @@ import { COLORS } from 'constants/colors';
 
 import type { FC } from 'react';
 import React from 'react';
+import type { ViewProps } from 'react-native';
 import { Image, StyleSheet, Text, View } from 'react-native';
 
 interface Props {
   companyName: string;
   companyLocation: string;
   logo: string;
+  additionalStyles?: ViewProps['style'];
 }
 
-export const Company: FC<Props> = ({ companyLocation, companyName, logo }) => {
+export const CompanyBlock: FC<Props> = ({ companyLocation, companyName, logo, additionalStyles }) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, additionalStyles]}>
       <Image style={styles.logo} src={logo} />
       <View>
         <Text style={styles.name}>{companyName}</Text>
