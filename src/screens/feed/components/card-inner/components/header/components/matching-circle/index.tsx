@@ -13,7 +13,7 @@ interface Props {
 export const MatchingCircle: FC<Props> = ({ value, label }) => {
   return (
     <View style={styles.container}>
-      <CircularProgress progress={0.9} size={52} />
+      <CircularProgress progress={value} size={52} />
       <Text style={styles.label}>{label}</Text>
     </View>
   );

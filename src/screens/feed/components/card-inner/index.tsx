@@ -1,3 +1,5 @@
+import { COLORS } from 'constants/colors';
+
 import type { FC } from 'react';
 import React, { useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
@@ -49,6 +51,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     justifyContent: 'space-between',
-    backgroundColor: '#EC612B',
+    backgroundColor: COLORS.neutralGray,
   },
 });
