@@ -1,13 +1,7 @@
 import { COLORS } from 'constants/colors';
 
-import {
-  PaintStyle,
-  Skia,
-  StrokeCap,
-  TileMode,
-  useComputedValue,
-  vec,
-} from '@shopify/react-native-skia';
+import { PaintStyle, Skia, StrokeCap, TileMode, vec } from '@shopify/react-native-skia';
+import { useDerivedValue } from 'react-native-reanimated';
 
 interface Config {
   size: number;
@@ -34,7 +28,7 @@ export const useCircularProgressValues = ({
     360,
   );
 
-  const progressPath = useComputedValue(() => {
+  const progressPath = useDerivedValue(() => {
     const p = Skia.Path.Make();
     const startAngle = -90 - 20;
     const sweepAngle = 360 * progress;
